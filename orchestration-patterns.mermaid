@@ -1,0 +1,34 @@
+graph LR
+    subgraph "Data Orchestration"
+        CDP[Customer Data Platform]
+        XM[Experience Management]
+        AN[Analytics]
+        
+        CDP -->|Profile Data| XM
+        XM -->|Feedback Data| AN
+        AN -->|Insights| CDP
+    end
+
+    subgraph "Channel Orchestration"
+        WEB[Web Experience]
+        MOB[Mobile Experience]
+        VOI[Voice Experience]
+        
+        WEB -->|Seamless Handoff| MOB
+        MOB -->|Context Transfer| VOI
+        VOI -->|Journey History| WEB
+    end
+
+    subgraph "Service Orchestration"
+        SS[Self Service]
+        AS[Assisted Service]
+        PS[Proactive Service]
+        
+        SS -->|Escalation| AS
+        AS -->|Case History| PS
+        PS -->|Next Best Action| SS
+    end
+
+    style CDP fill:#8b5cf6,color:#fff
+    style XM fill:#3b82f6,color:#fff
+    style AN fill:#10b981,color:#fff
