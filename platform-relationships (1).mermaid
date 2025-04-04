@@ -1,0 +1,82 @@
+flowchart TD
+    subgraph DeveloperPlane[Developer Control Plane]
+        IDE[CX Development Studio]
+        Portal[Developer Portal]
+        VC[Version Control]
+        CICD[CI/CD Pipeline]
+    end
+
+    subgraph IntegrationPlane[Integration & Delivery Plane]
+        Hub[cXonnect Hub]
+        Registry[Component Registry]
+        Deploy[Deployment Service]
+        Orch[CX Orchestrator]
+    end
+
+    subgraph AIPlane[AI & Intelligence Plane]
+        Agents[AI Agent Network]
+        ML[Machine Learning]
+        NLP[NLP Services]
+        Analytics[Analytics Engine]
+    end
+
+    subgraph ResourcePlane[Resource Plane]
+        Compute[Compute Services]
+        Data[Data Services]
+        Network[Network Services]
+        Storage[Storage Services]
+    end
+
+    subgraph SecurityPlane[Security Plane]
+        IAM[Identity & Access]
+        Secrets[Secrets Management]
+        Compliance[Compliance Engine]
+        Audit[Audit System]
+    end
+
+    subgraph MonitoringPlane[Monitoring Plane]
+        Metrics[CX Metrics]
+        Logs[Logging Service]
+        Trace[Distributed Tracing]
+        Alert[Alert Manager]
+    end
+
+    IDE --> Portal
+    Portal --> Hub
+    VC --> CICD
+    CICD --> Deploy
+
+    Hub --> Orch
+    Registry --> Deploy
+    Deploy --> Compute
+    Orch --> Agents
+
+    Agents --> ML
+    ML --> Analytics
+    NLP --> Analytics
+
+    Compute --> Network
+    Data --> Storage
+    Network --> IAM
+
+    IAM --> Audit
+    Secrets --> Compliance
+    Compliance --> Metrics
+
+    Metrics --> Alert
+    Logs --> Trace
+    Alert --> Trace
+
+    classDef developer fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    classDef integration fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    classDef ai fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px
+    classDef resource fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    classDef security fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef monitoring fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px
+
+    class IDE,Portal,VC,CICD developer
+    class Hub,Registry,Deploy,Orch integration
+    class Agents,ML,NLP,Analytics ai
+    class Compute,Data,Network,Storage resource
+    class IAM,Secrets,Compliance,Audit security
+    class Metrics,Logs,Trace,Alert monitoring
