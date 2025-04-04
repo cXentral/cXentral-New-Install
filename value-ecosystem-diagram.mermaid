@@ -1,0 +1,57 @@
+graph TD
+    subgraph Core[cXentral Core Platform]
+        CP[Central Platform]
+    end
+
+    subgraph CX[cXonnect Hub]
+        MP[Marketplace Integration]
+        VE[Vendor Ecosystem]
+        RT[Real-time Sync]
+    end
+
+    subgraph AI[AI Agent Network]
+        AN[Agent Network]
+        ML[Machine Learning]
+        PR[Predictive Analytics]
+    end
+
+    subgraph IF[Integration Framework]
+        IC[Integration Core]
+        WF[Workflow Engine]
+        API[API Management]
+    end
+
+    subgraph SE[Security Engine]
+        ZT[Zero Trust]
+        CM[Compliance]
+        EP[Enterprise Protection]
+    end
+
+    CP --> MP
+    CP --> AN
+    CP --> IC
+    CP --> ZT
+
+    MP --> VE
+    MP --> RT
+    
+    AN --> ML
+    AN --> PR
+    
+    IC --> WF
+    IC --> API
+    
+    ZT --> CM
+    ZT --> EP
+
+    classDef core fill:#2374AB,stroke:#2374AB,color:#fff
+    classDef cx fill:#048BA8,stroke:#048BA8,color:#fff
+    classDef ai fill:#16DB93,stroke:#16DB93,color:#fff
+    classDef integration fill:#A4036F,stroke:#A4036F,color:#fff
+    classDef security fill:#048BA8,stroke:#048BA8,color:#fff
+
+    class CP core
+    class MP,VE,RT cx
+    class AN,ML,PR ai
+    class IC,WF,API integration
+    class ZT,CM,EP security

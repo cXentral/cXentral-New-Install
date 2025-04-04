@@ -1,0 +1,75 @@
+flowchart TB
+    subgraph DEV[Developer Experience]
+        Studio[CX Studio]
+        Portal[Dev Portal]
+        CICD[CI/CD]
+    end
+
+    subgraph INT[Integration Layer]
+        Hub[cXonnect Hub]
+        Registry[Component Registry]
+        Gateway[API Gateway]
+    end
+
+    subgraph AI[AI Layer]
+        Agents[AI Agents]
+        ML[ML Pipeline]
+        Analytics[Analytics]
+    end
+
+    subgraph RES[Resource Layer]
+        Compute[Compute]
+        Data[Data Services]
+        Network[Network]
+    end
+
+    subgraph SEC[Security Layer]
+        IAM[Identity & Access]
+        Audit[Audit System]
+        Compliance[Compliance]
+    end
+
+    subgraph MON[Monitoring Layer]
+        Metrics[Metrics]
+        Logs[Logging]
+        Alerts[Alerting]
+    end
+
+    %% Control Flows
+    Studio --> Hub
+    Portal --> Gateway
+    CICD --> Registry
+
+    %% Data Flows
+    Hub --> Agents
+    Gateway --> ML
+    Registry --> Analytics
+
+    %% Resource Flows
+    Agents --> Compute
+    ML --> Data
+    Analytics --> Network
+
+    %% Security Flows
+    Hub --> IAM
+    Gateway --> Audit
+    Registry --> Compliance
+
+    %% Monitoring Flows
+    Compute --> Metrics
+    Data --> Logs
+    Network --> Alerts
+
+    classDef dev fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    classDef int fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    classDef ai fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px
+    classDef res fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    classDef sec fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef mon fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px
+
+    class Studio,Portal,CICD dev
+    class Hub,Registry,Gateway int
+    class Agents,ML,Analytics ai
+    class Compute,Data,Network res
+    class IAM,Audit,Compliance sec
+    class Metrics,Logs,Alerts mon

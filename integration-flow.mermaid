@@ -1,0 +1,19 @@
+flowchart TD
+    A[Landing Page] --> B{Tool Catalog}
+    B --> C[Tool Details]
+    B --> D[Integration Patterns]
+    C --> E[Performance Metrics]
+    D --> E
+    E --> F[Implementation Guide]
+    
+    subgraph "Shared Components"
+        G[Navigation]
+        H[Search]
+        I[Documentation]
+    end
+    
+    G --> B
+    G --> C
+    G --> D
+    H --> B
+    I --> F

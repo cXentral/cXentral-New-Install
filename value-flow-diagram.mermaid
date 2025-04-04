@@ -1,0 +1,37 @@
+flowchart TD
+    subgraph Platform[cXentral Platform]
+        direction TB
+        Core[Core Platform] --> Hub
+        Core --> AI
+        Core --> Int
+        Core --> Sec
+    end
+
+    Hub[cXonnect Hub]
+    AI[AI Agent Network]
+    Int[Integration Framework]
+    Sec[Security Framework]
+
+    Hub --> V1[Vendor Integration]
+    Hub --> V2[Marketplace Innovation]
+    Hub --> V3[Real-time Sync]
+
+    AI --> A1[Intelligent Automation]
+    AI --> A2[Predictive Insights]
+    AI --> A3[Learning Optimization]
+
+    Int --> I1[Seamless Connectivity]
+    Int --> I2[Workflow Automation]
+    Int --> I3[API Management]
+
+    Sec --> S1[Zero Trust Security]
+    Sec --> S2[Compliance Automation]
+    Sec --> S3[Data Protection]
+
+    classDef platform fill:#bbdefb,stroke:#1976d2,stroke-width:2px,color:#1976d2
+    classDef component fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#388e3c
+    classDef value fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#7b1fa2
+
+    class Core,Platform platform
+    class Hub,AI,Int,Sec component
+    class V1,V2,V3,A1,A2,A3,I1,I2,I3,S1,S2,S3 value

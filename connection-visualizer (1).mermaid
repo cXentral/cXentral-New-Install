@@ -1,0 +1,21 @@
+flowchart LR
+    IDE[IDE Service] --> VC[Version Control]
+    VC --> CI[CI Pipeline]
+    CI --> REG[Registry]
+    REG --> CD[CD Pipeline]
+    CD --> COMP[Compute Resources]
+    
+    subgraph "Developer Control Plane"
+        IDE
+        VC
+    end
+    
+    subgraph "Integration Layer"
+        CI
+        REG
+        CD
+    end
+    
+    subgraph "Resource Layer"
+        COMP
+    end

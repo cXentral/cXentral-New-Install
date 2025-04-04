@@ -1,0 +1,18 @@
+flowchart TD
+    subgraph "Point-to-Point"
+        A[Component A] --> B[Component B]
+    end
+    
+    subgraph "Publish-Subscribe"
+        P[Publisher] --> Topic[Message Topic]
+        Topic --> S1[Subscriber 1]
+        Topic --> S2[Subscriber 2]
+        Topic --> S3[Subscriber 3]
+    end
+    
+    subgraph "Event-Driven"
+        E[Event Source] --> Bus[Event Bus]
+        Bus --> H1[Handler 1]
+        Bus --> H2[Handler 2]
+        H1 --> E2[New Event]
+    end
