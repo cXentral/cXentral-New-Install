@@ -1,0 +1,43 @@
+graph TB
+    subgraph "cxentral Platform"
+        API[API Gateway]
+        INT[Integration Hub]
+        ETL[Data Transformation]
+        SEC[Security Layer]
+        STREAM[Stream Processing]
+        CACHE[Cache Layer]
+    end
+
+    subgraph "CX Platforms"
+        V[Verint]
+        G[Genesys]
+        SF[Salesforce]
+        ZM[Zoom]
+        T[Teams]
+    end
+
+    subgraph "Data Processing"
+        ML[ML Engine]
+        ANLX[Analytics]
+        SENT[Sentiment Analysis]
+    end
+
+    API --> INT
+    INT --> ETL
+    ETL --> STREAM
+    STREAM --> CACHE
+
+    INT --> V
+    INT --> G
+    INT --> SF
+    INT --> ZM
+    INT --> T
+
+    STREAM --> ML
+    ML --> ANLX
+    ML --> SENT
+
+    style API fill:#f9f,stroke:#333,stroke-width:2px
+    style INT fill:#bbf,stroke:#333,stroke-width:2px
+    style ETL fill:#bfb,stroke:#333,stroke-width:2px
+    style STREAM fill:#fbb,stroke:#333,stroke-width:2px
