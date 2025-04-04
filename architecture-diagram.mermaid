@@ -1,0 +1,76 @@
+flowchart TB
+    subgraph Client["Client Layer"]
+        Browser["Web Browser"]
+        Mobile["Mobile Apps"]
+        Desktop["Desktop Apps"]
+    end
+
+    subgraph Security["Security Layer"]
+        WAF["Web Application Firewall"]
+        Auth["Authentication Service"]
+        SSL["SSL/TLS Encryption"]
+    end
+
+    subgraph Frontend["Frontend Layer"]
+        UI["React UI Components"]
+        State["State Management"]
+        API_Client["API Client"]
+    end
+
+    subgraph API["API Gateway Layer"]
+        Gateway["API Gateway"]
+        Cache["Redis Cache"]
+        RateLimit["Rate Limiting"]
+    end
+
+    subgraph Core["Core Services"]
+        direction TB
+        subgraph Integration["Integration Services"]
+            IntHub["Integration Hub"]
+            DataSync["Data Sync Engine"]
+            Transform["Data Transformation"]
+        end
+        
+        subgraph Analytics["Analytics Engine"]
+            Stream["Stream Processing"]
+            ML["Machine Learning"]
+            Metrics["Metrics Engine"]
+        end
+
+        subgraph Extensions["Extension Framework"]
+            ExtManager["Extension Manager"]
+            Registry["Extension Registry"]
+            Sandbox["Sandbox Environment"]
+        end
+    end
+
+    subgraph Data["Data Layer"]
+        Primary["Primary Database"]
+        Analytics_DB["Analytics Database"]
+        Queue["Message Queue"]
+        ObjectStore["Object Storage"]
+    end
+
+    subgraph External["External Systems"]
+        Verint["Verint Platform"]
+        Zoom["Zoom"]
+        Teams["Microsoft Teams"]
+        Other["Other Platforms"]
+    end
+
+    Client --> Security
+    Security --> Frontend
+    Frontend --> API
+    API --> Core
+    Core --> Data
+    Integration --> External
+    
+    classDef primary fill:#f9f,stroke:#333,stroke-width:2px
+    classDef secondary fill:#bbf,stroke:#333,stroke-width:2px
+    classDef data fill:#bfb,stroke:#333,stroke-width:2px
+    classDef external fill:#fbb,stroke:#333,stroke-width:2px
+
+    class Core,Integration,Analytics,Extensions primary
+    class Frontend,API,Security secondary
+    class Data data
+    class External external
