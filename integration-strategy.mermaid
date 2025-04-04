@@ -1,0 +1,49 @@
+flowchart TB
+    subgraph Frontend["React Application"]
+        MARKETING["Marketing Pages"]
+        APP["Application Dashboard"]
+        PARTNER["Partner Portal"]
+        AUTH["Authentication"]
+    end
+
+    subgraph Services["Backend Services"]
+        API["API Gateway"]
+        WS["WebSocket Server"]
+        IDENTITY["Identity Service"]
+    end
+
+    subgraph Data["Data Layer"]
+        DB[(Database)]
+        CACHE[(Redis Cache)]
+        QUEUE[("Message Queue")]
+    end
+
+    subgraph External["External Services"]
+        REVIEW["Review Platforms"]
+        PAYMENT["Payment Gateway"]
+        EMAIL["Email Service"]
+    end
+
+    MARKETING --> API
+    APP --> API
+    APP --> WS
+    PARTNER --> API
+    AUTH --> IDENTITY
+
+    API --> DB
+    API --> CACHE
+    WS --> CACHE
+    IDENTITY --> DB
+
+    API --> QUEUE
+    QUEUE --> External
+
+    classDef frontend fill:#f9f,stroke:#333,stroke-width:2px
+    classDef services fill:#bbf,stroke:#333,stroke-width:2px
+    classDef data fill:#bfb,stroke:#333,stroke-width:2px
+    classDef external fill:#fbb,stroke:#333,stroke-width:2px
+
+    class MARKETING,APP,PARTNER,AUTH frontend
+    class API,WS,IDENTITY services
+    class DB,CACHE,QUEUE data
+    class REVIEW,PAYMENT,EMAIL external

@@ -1,28 +1,43 @@
-flowchart TB
-    subgraph CX["cXentral Integration Layer"]
-        CCaaS[Contact Center APIs]
-        Voice[Voice/Communication APIs]
-        DXP[Digital Experience APIs]
-        Analytics[Analytics APIs]
+graph TB
+    subgraph "cxentral Platform"
+        API[API Gateway]
+        INT[Integration Hub]
+        ETL[Data Transformation]
+        SEC[Security Layer]
+        STREAM[Stream Processing]
+        CACHE[Cache Layer]
     end
 
-    subgraph Apideck["Apideck Unified APIs"]
-        CRM[CRM APIs]
-        ACC[Accounting APIs]
-        HR[HRMS APIs]
+    subgraph "CX Platforms"
+        V[Verint]
+        G[Genesys]
+        SF[Salesforce]
+        ZM[Zoom]
+        T[Teams]
     end
 
-    subgraph Platforms["Enterprise Systems"]
-        CXSP[CX Platforms]
-        BizSys[Business Systems]
+    subgraph "Data Processing"
+        ML[ML Engine]
+        ANLX[Analytics]
+        SENT[Sentiment Analysis]
     end
 
-    Client[Client Applications] --> CX
-    Client --> Apideck
-    
-    CX --> CXSP
-    Apideck --> BizSys
+    API --> INT
+    INT --> ETL
+    ETL --> STREAM
+    STREAM --> CACHE
 
-    style CX fill:#8b5cf6,color:#fff
-    style Apideck fill:#3b82f6,color:#fff
-    style Platforms fill:#10b981,color:#fff
+    INT --> V
+    INT --> G
+    INT --> SF
+    INT --> ZM
+    INT --> T
+
+    STREAM --> ML
+    ML --> ANLX
+    ML --> SENT
+
+    style API fill:#f9f,stroke:#333,stroke-width:2px
+    style INT fill:#bbf,stroke:#333,stroke-width:2px
+    style ETL fill:#bfb,stroke:#333,stroke-width:2px
+    style STREAM fill:#fbb,stroke:#333,stroke-width:2px

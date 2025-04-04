@@ -1,39 +1,46 @@
-flowchart TD
-    subgraph UMH[Universal Marketplace Hub]
-        API[API Gateway]
-        Auth[Authentication Service]
-        Market[Marketplace Service]
-        Analytics[Analytics Engine]
+flowchart TB
+    subgraph Frontend["Frontend Layer"]
+        REACT[React Application]
+        FRAMER[Framer Marketing Site]
     end
 
-    subgraph CX[cXentral Extensions]
-        CCaaS[CCaaS Integrations]
-        XM[XM Platform Extensions]
-        Support[Support Platform Integrations]
-        Custom[Custom Extensions]
+    subgraph API["API Gateway"]
+        REST[REST API]
+        WS[WebSocket Server]
+        AUTH[Authentication]
     end
 
-    subgraph Core[Core Services]
-        Deploy[Deployment Engine]
-        Monitor[Monitoring Service]
-        Billing[Billing System]
-        Security[Security Framework]
+    subgraph Integration["Integration Layer"]
+        COLLECTOR[Data Collector]
+        PROCESSOR[Stream Processor]
+        CACHE[Redis Cache]
     end
 
-    User[End Users] --> API
-    API --> Auth
-    Auth --> Market
-    Market --> CCaaS & XM & Support & Custom
+    subgraph Data["Data Sources"]
+        G2[G2 Reviews]
+        TR[TrustRadius]
+        GP[Gartner]
+        CAP[Capterra]
+    end
+
+    REACT --> WS
+    REACT --> REST
+    FRAMER --> REST
+
+    WS --> CACHE
+    REST --> CACHE
     
-    CCaaS & XM & Support & Custom --> Deploy
-    Deploy --> Monitor
-    Monitor --> Analytics
-    Analytics --> Billing
-
-    classDef primary fill:#2374ab,stroke:#2374ab,stroke-width:2px,color:#fff
-    classDef secondary fill:#048ba8,stroke:#048ba8,stroke-width:2px,color:#fff
-    classDef accent fill:#16db93,stroke:#16db93,stroke-width:2px,color:#fff
+    COLLECTOR --> PROCESSOR
+    PROCESSOR --> CACHE
     
-    class UMH,Core primary
-    class CX secondary
-    class User accent
+    Data --> COLLECTOR
+
+    classDef frontend fill:#f9f,stroke:#333,stroke-width:2px
+    classDef api fill:#bbf,stroke:#333,stroke-width:2px
+    classDef integration fill:#bfb,stroke:#333,stroke-width:2px
+    classDef data fill:#fbb,stroke:#333,stroke-width:2px
+
+    class REACT,FRAMER frontend
+    class REST,WS,AUTH api
+    class COLLECTOR,PROCESSOR,CACHE integration
+    class G2,TR,GP,CAP data
